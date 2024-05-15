@@ -14,6 +14,7 @@ const FrontLayout  = ({ title , children }: PropsWithChildren<Props>) => {
           rel="stylesheet"
           href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css"
         />
+        <script src="//unpkg.com/alpinejs" defer></script>
       </head>
       <body>{children}</body>
     </html>

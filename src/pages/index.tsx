@@ -15,15 +15,17 @@ const app = new Hono()
 app.get("/", (c) => {
   const sessionCookie = getCookie(c, 'sessionCookie')
 
+  const posts: Post[] = [
+    { id: '1', title: 'Good Morning', body: 'Let us eat breakfast' },
+    { id: '2', title: 'Good Afternoon', body: 'Let us eat Lunch' },
+    { id: '3', title: 'Good Evening', body: 'Let us eat Dinner' },
+    { id: '4', title: 'Good Night', body: 'Let us drink Beer' },
+    { id: '5', title: 'こんにちは', body: '昼からビールを飲みます' }
+  ]
+
   console.log(sessionCookie)
   if (sessionCookie) {
-    const posts: Post[] = [
-      { id: '1', title: 'Good Morning', body: 'Let us eat breakfast' },
-      { id: '2', title: 'Good Afternoon', body: 'Let us eat Lunch' },
-      { id: '3', title: 'Good Evening', body: 'Let us eat Dinner' },
-      { id: '4', title: 'Good Night', body: 'Let us drink Beer' },
-      { id: '5', title: 'こんにちは', body: '昼からビールを飲みます' }
-    ]
+    
     return c.html(
       <DashboardLayout title="Dashboard">
         <h1>Dashboard</h1>
@@ -37,8 +39,12 @@ app.get("/", (c) => {
   } else {
     
     return c.html(
-      <FrontLayout title="Dashboard">
-        <a href="/login">login</a>
+      <FrontLayout title="Index Page">
+        <h1>Index Page</h1>
+        <div className="nav">
+          <a href="/login">login</a>
+        </div>
+        <PostList posts={posts} />
       </FrontLayout>,
     );
   }
