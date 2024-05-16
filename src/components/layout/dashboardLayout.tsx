@@ -1,15 +1,21 @@
 import { PropsWithChildren } from 'hono/jsx'
 
-interface Props {
+
+
+interface SiteData {
   title: string
+  description?: string
+  image?: string
+  children?: any
 }
 
-
-const DashboardLayout  = ({ title , children }: PropsWithChildren<Props>) => {
+const DashboardLayout  = ({ title ,description,  children }: PropsWithChildren<SiteData>) => {
   return (
     <html>
       <head>
+        <meta charset="UTF-8"/>
         <title>{title}</title>
+        <meta name="description" content={description}></meta>
         <link
           rel="stylesheet"
           href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css"

@@ -25,9 +25,13 @@ app.get("/", (c) => {
 
   console.log(sessionCookie)
   if (sessionCookie) {
-    
+    const metaProps = {
+      title: 'DashboardLayout',
+      description: 'This is a description',
+      image: 'https://example.com/image.png',
+    }
     return c.html(
-      <DashboardLayout title="Dashboard">
+      <DashboardLayout {...metaProps}>
         <h1>Dashboard</h1>
         <form method="POST" action="/logout">
           <button>logout</button>
@@ -37,9 +41,13 @@ app.get("/", (c) => {
       </DashboardLayout>,
     );
   } else {
-    
+    const metaProps = {
+      title: 'FrontLayout',
+      description: 'This is a description',
+      image: 'https://example.com/image.png',
+    }
     return c.html(
-      <FrontLayout title="Index Page">
+      <FrontLayout {...metaProps}>
         <h1>Index Page</h1>
         <div className="nav">
           <a href="/login">login</a>
