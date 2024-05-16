@@ -9,16 +9,21 @@ interface Props {
   posts: Post[]
 }
 
-// const AlpineWidget = () => (
-//   <div dangerouslySetInnerHTML={{__html: alpineTemplate}} />
-// );
-
-const Footer = () => html`
+const Footer = ({ posts }: Props) => html`
   <div x-data="{ open: false }">
     <button @click="open = !open">Expand</button>
     <span x-show="open">
         Content...
     </span>
+  </div>
+
+  <!-- list posts -->
+
+  <div>
+    <h2>Posts List in hono html Helper </h2>
+    <ul style="list-style: none; padding: 0; margin: 0; ">
+      ${posts.map((post) => html`<li>${post.title}</li>`)}
+    </ul>
   </div>
 `
 
@@ -28,12 +33,12 @@ const PostList: FC<Props> = ({ posts }: Props) => {
     <DashboardLayout title={'Posts'}>
       <main>
         <h2>Posts</h2>
-        <ul>
+        <ul class="posts" style="list-style: none; padding: 0; margin: 0; ">
           {posts.map((post) => (
             <div>{post.title}</div>
           ))}
         </ul>
-        <Footer />
+        <Footer posts={posts} />
       </main>
     </DashboardLayout>
   )
